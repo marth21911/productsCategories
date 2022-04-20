@@ -1,0 +1,26 @@
+@model Category
+<div class="text-center">
+    <h1>Categories  |  <a href="/productmaker">Products</a></h1>
+    <div class="boxes">
+        <div class="box">
+            <h3>Im on the left</h3>
+            @* a form to make a new category*@
+            <form action="/category/create" method="post">
+                <label for="Name">Category</label>
+                <input asp-for="Name" class ="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <input type="submit" name="submit" class="btn btn-success">
+            </form>
+        </div>
+        <div class="box">
+            <h3>Im on the right</h3>
+            @* a list of current categories hyperlinked to product adder *@
+            <ul>
+                @foreach (Category a in ViewBag.AllCategories)
+                {
+                    <li scope="row"><a href="category/@a.CategoryId">@a.Name</a> </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

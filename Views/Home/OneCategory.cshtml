@@ -1,0 +1,31 @@
+﻿@model Shared
+
+<div class="text-center">
+    <h3><a href="/categorymaker">Go To All Categories</a></h3>
+    <h1>@ViewBag.OneCategory.Name</h1>
+    <div class="boxes">
+        <div class="box">
+            <h3>Im on the left</h3>
+            <ul>
+                @foreach(Shared s in ViewBag.OneCategory.SharedProd)
+                {
+                    <li>@s.Product.Name </li>
+                }
+            </ul>
+        </div>
+        <div class="box">
+            <h3>Im on the right</h3>
+            <form action="/AddShared" method="post">
+                <select asp-for="ProductId" >
+                    @foreach (Product b in ViewBag.RemainingProd)
+                    {
+                        <option value="@b.ProductId"> @b.ProductId @b.Name</option>
+                    }
+                </select>
+                <input type="hidden" asp-for="CategoryId" value="@ViewBag.OneCategory.CategoryId">
+                <input type="submit" class="btn btn-success">
+            </form>
+            <p>@ViewBag.OneCategory.CategoryId</p>
+        </div>
+    </div>
+</div>
